@@ -40,7 +40,7 @@ Route::middleware('auth')->group(function () {
     });
 });
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';
 
 Route::name('admin')->prefix('admin')->middleware(UserIsAdmin::class)->group(function () {
     Route::name('.products')->prefix('products')->controller(ProductController::class)->group(function () {
