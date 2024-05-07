@@ -26,6 +26,6 @@ class DatabaseSeeder extends Seeder
             'email' => 'johndoe@example.com',
         ]);
 
-        Product::factory(10)->create(['status' => 1]);
+        Product::factory(20)->create(['status' => 1]);
     }
 }

@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Product>
@@ -18,17 +18,20 @@ class ProductFactory extends Factory
      */
     public function definition(): array
     {
-        $path = storage_path('/app/public/products');
-        if (! File::exists($path)) {
-            File::makeDirectory($path, 0755, false, true);
+        $path = 'products';
+        if (! Storage::disk('public')->exists($path)) {
+            Storage::disk('public')->makeDirectory($path);
         }
+
+        $image = fake()->image(Storage::disk('public')->path($path), 750, 750, null, true);
+        $imageFile = new \Illuminate\Http\File($image);
 
         return [
             'name' => fake()->words(3, true),
             'description' => fake()->paragraphs(3, true),
             'price' => fake()->randomFloat(2, 100.0, 1000.00),
             'status' => Arr::random([true, false]),
-            'images' => fake()->image('public/storage/products', 750, 750, 'beauty', true, true),
+            'images' => Storage::disk('public')->putFile('products', $imageFile),
         ];
     }
 }
