@@ -14,7 +14,7 @@ class PagesController extends Controller
     public function allProducts()
     {
         $products = Product::query()
-            ->select(['id', 'name', 'images', 'price'])
+            ->select(['id', 'name', 'images', 'price', 'description'])
             ->active()
             ->latest('id')
             ->paginate(12);

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\UserIsAdmin;
@@ -20,6 +21,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('products', [PagesController::class, 'allProducts'])->name('pages.products');
+
+    Route::name('cart')->prefix('cart')->controller(CartController::class)->group(function () {
+        Route::get('/', 'index')->name('.index');
+        Route::post('/add/{productId}', 'add')->name('.add');
+        Route::put('/{cartId}', 'update')->name('.update');
+        Route::delete('/{cartId}', 'destroy')->name('.destroy');
+    });
 });
 
 require __DIR__.'/auth.php';

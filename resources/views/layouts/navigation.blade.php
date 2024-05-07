@@ -24,6 +24,10 @@
                         <x-nav-link :href="route('pages.products')" :active="request()->routeIs('pages.products')">
                             {{ __('Products') }}
                         </x-nav-link>
+
+                        <x-nav-link :href="route('cart.index')" :active="request()->routeIs('cart.index')">
+                            {{ __('Cart') }}
+                        </x-nav-link>
                     @endif
                 </div>
             </div>
@@ -96,6 +100,10 @@
             @else
                 <x-responsive-nav-link :href="route('pages.products')" :active="request()->routeIs('pages.products')">
                     {{ __('Products') }}
+                </x-responsive-nav-link>
+
+                <x-responsive-nav-link :href="route('cart.index')" :active="request()->routeIs('cart.index')">
+                    {{ __('Cart') }}
                 </x-responsive-nav-link>
             @endif
         </div>
