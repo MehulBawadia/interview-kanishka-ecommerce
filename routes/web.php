@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\UserIsAdmin;
@@ -33,6 +34,10 @@ Route::middleware('auth')->group(function () {
     Route::name('checkout')->prefix('checkout')->controller(CheckoutController::class)->group(function () {
         Route::get('/', 'index')->name('.index');
         Route::post('/place-order', 'placeOrder')->name('.placeOrder');
+    });
+
+    Route::name('orders')->prefix('orders')->controller(OrderController::class)->group(function () {
+        Route::get('/', 'index')->name('.index');
     });
 });
 
