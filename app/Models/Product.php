@@ -17,4 +17,14 @@ class Product extends Model
     protected $fillable = [
         'name', 'description', 'price', 'images', 'status',
     ];
+
+    /**
+     * Fetch the products whose status is set to active or true.
+     *
+     * @return void
+     */
+    public function scopeActive()
+    {
+        $this->where('status', true);
+    }
 }

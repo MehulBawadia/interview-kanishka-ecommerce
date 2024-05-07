@@ -20,6 +20,10 @@
                         <x-nav-link :href="route('admin.products.index')" :active="request()->routeIs('admin.products.*')">
                             {{ __('Products') }}
                         </x-nav-link>
+                    @else
+                        <x-nav-link :href="route('pages.products')" :active="request()->routeIs('pages.products')">
+                            {{ __('Products') }}
+                        </x-nav-link>
                     @endif
                 </div>
             </div>
@@ -87,6 +91,10 @@
 
             @if (auth()->user()->role === 'admin')
                 <x-responsive-nav-link :href="route('admin.products.index')" :active="request()->routeIs('admin.products.*')">
+                    {{ __('Products') }}
+                </x-responsive-nav-link>
+            @else
+                <x-responsive-nav-link :href="route('pages.products')" :active="request()->routeIs('pages.products')">
                     {{ __('Products') }}
                 </x-responsive-nav-link>
             @endif
