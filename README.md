@@ -2,6 +2,14 @@
 
 This is a nano E-Commerce project. This is an assignment project for the Technical Round interview for Kanishka Software Pvt. Ltd. company.
 
+### Versions
+
+The following versions have been utilised in this project.
+
+-   Laravel v11.x includes Breeze
+-   Node 20.10.0
+-   NPM 10.6.0
+
 ### Steps to install this project on your machine
 
 Run the following commands one by one
