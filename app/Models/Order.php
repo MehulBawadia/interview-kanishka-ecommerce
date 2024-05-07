@@ -21,6 +21,20 @@ class Order extends Model
     ];
 
     /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'billing_details' => 'array',
+            'shipping_details' => 'array',
+            'product_details' => 'array',
+        ];
+    }
+
+    /**
      * An order belongs to a single class.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

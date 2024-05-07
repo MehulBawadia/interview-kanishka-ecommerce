@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CartProductRequest;
 use App\Models\Order;
-use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class CheckoutController extends Controller
@@ -27,6 +24,11 @@ class CheckoutController extends Controller
         ]);
     }
 
+    /**
+     * Create a new order.
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function placeOrder(Request $request)
     {
         $user = auth()->user();
@@ -45,20 +47,20 @@ class CheckoutController extends Controller
 
         Order::create([
             'user_id' => $user->id,
-            'order_code' => Str::random(8) . '-' . mt_rand(1, 9999),
-            'billing_details' => json_encode([
+            'order_code' => Str::random(8).'-'.mt_rand(1, 9999),
+            'billing_details' => [
                 'name' => $request->billing_name,
                 'email' => $request->billing_email,
                 'phone_number' => $request->billing_phone_number,
                 'address' => $request->billing_address,
-            ]),
-            'shipping_details' => json_encode([
+            ],
+            'shipping_details' => [
                 'name' => $request->shipping_name,
                 'email' => $request->shipping_email,
                 'phone_number' => $request->shipping_phone_number,
                 'address' => $request->shipping_address,
-            ]),
-            'product_details' => json_encode($cart),
+            ],
+            'product_details' => $cart,
             'cart_total' => $user->cartProducts->sum('amount'),
         ]);
 

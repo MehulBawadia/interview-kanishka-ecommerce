@@ -38,10 +38,11 @@ Route::middleware('auth')->group(function () {
 
     Route::name('orders')->prefix('orders')->controller(OrderController::class)->group(function () {
         Route::get('/', 'index')->name('.index');
+        Route::get('/{orderCode}', 'show')->name('.show');
     });
 });
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';
 
 Route::name('admin')->prefix('admin')->middleware(UserIsAdmin::class)->group(function () {
     Route::name('.products')->prefix('products')->controller(ProductController::class)->group(function () {

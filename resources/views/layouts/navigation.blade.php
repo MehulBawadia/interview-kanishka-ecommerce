@@ -28,11 +28,10 @@
                         <x-nav-link :href="route('cart.index')" :active="request()->routeIs('cart.index')">
                             {{ __('Cart') }}
                         </x-nav-link>
-
-                        <x-nav-link :href="route('orders.index')" :active="request()->routeIs('orders.index')">
-                            {{ __('Orders') }}
-                        </x-nav-link>
                     @endif
+                    <x-nav-link :href="route('orders.index')" :active="request()->routeIs('orders.index')">
+                        {{ __('Orders') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -109,11 +108,11 @@
                 <x-responsive-nav-link :href="route('cart.index')" :active="request()->routeIs('cart.index')">
                     {{ __('Cart') }}
                 </x-responsive-nav-link>
-
-                <x-responsive-nav-link :href="route('orders.index')" :active="request()->routeIs('orders.index')">
-                    {{ __('Orders') }}
-                </x-responsive-nav-link>
             @endif
+
+            <x-responsive-nav-link :href="route('orders.index')" :active="request()->routeIs('orders.index')">
+                {{ __('Orders') }}
+            </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->
