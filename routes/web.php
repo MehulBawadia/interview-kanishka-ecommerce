@@ -32,6 +32,7 @@ Route::middleware('auth')->group(function () {
 
     Route::name('checkout')->prefix('checkout')->controller(CheckoutController::class)->group(function () {
         Route::get('/', 'index')->name('.index');
+        Route::post('/place-order', 'placeOrder')->name('.placeOrder');
     });
 });
 
