@@ -95,6 +95,14 @@
                     </tr>
                 </tbody>
             </table>
+
+            @if ($cart->isNotEmpty())
+                <div class="flex items-center justify-end">
+                    <a href="{{ route('checkout.index') }}"
+                        class="rounded bg-indigo-500 px-3 py-1 tracking-wider text-white shadow hover:bg-indigo-700">Process
+                        To Checkout</a>
+                </div>
+            @endif
         </div>
     </div>
 </x-app-layout>

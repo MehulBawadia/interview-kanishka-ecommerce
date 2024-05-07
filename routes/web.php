@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\UserIsAdmin;
@@ -28,9 +29,13 @@ Route::middleware('auth')->group(function () {
         Route::put('/{cartId}', 'update')->name('.update');
         Route::delete('/{cartId}', 'destroy')->name('.destroy');
     });
+
+    Route::name('checkout')->prefix('checkout')->controller(CheckoutController::class)->group(function () {
+        Route::get('/', 'index')->name('.index');
+    });
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 Route::name('admin')->prefix('admin')->middleware(UserIsAdmin::class)->group(function () {
     Route::name('.products')->prefix('products')->controller(ProductController::class)->group(function () {
