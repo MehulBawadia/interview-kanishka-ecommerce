@@ -23,4 +23,22 @@ class PagesController extends Controller
             'products' => $products,
         ]);
     }
+
+    /**
+     * Show the product details page.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function showProduct($productId)
+    {
+        $product = Product::query()
+            ->select(['id', 'name', 'images', 'price', 'description'])
+            ->active()
+            ->where('id', $productId)
+            ->firstOrFail();
+
+        return view('pages.product-details', [
+            'product' => $product,
+        ]);
+    }
 }

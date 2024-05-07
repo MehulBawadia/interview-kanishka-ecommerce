@@ -21,7 +21,8 @@
                             class="block h-[300px] w-[300px]" />
 
                         <div class="px-4 py-3">
-                            <h2 class="text-xl font-bold capitalize tracking-wider">{{ $product->name }}</h2>
+                            <a href="{{ route('pages.products.show', $product->id) }}"
+                                class="text-xl font-bold capitalize tracking-wider">{{ $product->name }}</a>
 
                             <p class="text-grqay-700 my-2 tracking-wider">
                                 {{ \Illuminate\Support\Str::limit($product->description, 30) }}

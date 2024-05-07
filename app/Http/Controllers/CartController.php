@@ -43,7 +43,7 @@ class CartController extends Controller
 
             DB::commit();
 
-            return to_route('pages.products')->with([
+            return back()->with([
                 'status' => 'product-added-in-cart',
             ]);
         } catch (\Exception $e) {
@@ -52,7 +52,7 @@ class CartController extends Controller
 
             DB::rollBack();
 
-            return to_route('pages.products')->with([
+            return back()->with([
                 'status' => 'could-not-add-product-in-cart',
             ]);
         }
