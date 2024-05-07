@@ -9,20 +9,18 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\UserIsAdmin;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [PagesController::class, 'allProducts']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('products', [PagesController::class, 'allProducts'])->name('pages.products');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
-    Route::get('products', [PagesController::class, 'allProducts'])->name('pages.products');
 
     Route::name('cart')->prefix('cart')->controller(CartController::class)->group(function () {
         Route::get('/', 'index')->name('.index');
@@ -42,7 +40,7 @@ Route::middleware('auth')->group(function () {
     });
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 Route::name('admin')->prefix('admin')->middleware(UserIsAdmin::class)->group(function () {
     Route::name('.products')->prefix('products')->controller(ProductController::class)->group(function () {

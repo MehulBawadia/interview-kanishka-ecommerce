@@ -29,14 +29,16 @@
 
                             <div class="my-4 font-semibold text-gray-700">&#8377; {{ $product->price }}</div>
 
-                            <form method="POST" action="{{ route('cart.add', $product->id) }}" class="mt-4">
-                                @csrf
-                                <input type="hidden" name="quantity" value="1" />
+                            @auth
+                                <form method="POST" action="{{ route('cart.add', $product->id) }}" class="mt-4">
+                                    @csrf
+                                    <input type="hidden" name="quantity" value="1" />
 
-                                <button type="submit"
-                                    class="rounded bg-indigo-500 px-3 py-1 tracking-wider text-white shadow hover:bg-indigo-700">Add
-                                    To Cart</button>
-                            </form>
+                                    <button type="submit"
+                                        class="rounded bg-indigo-500 px-3 py-1 tracking-wider text-white shadow hover:bg-indigo-700">Add
+                                        To Cart</button>
+                                </form>
+                            @endauth
                         </div>
                     </div>
                 @endforeach
